@@ -17,15 +17,16 @@ class Snake():
         self.loop()
 
     def reset(self):
-        # Snake
+        # initial snake position
         self.xs = [5, 5, 5, 5]
         self.ys = [6, 5, 4, 3]
         self.length = 4
+        # initial apple position
         self.f = []
         self.f.extend(range(0, 2))
         self.f[0] = random.randint(0, WIDTH - 1)
         self.f[1] = random.randint(0, HEIGHT - 1)
-        self.v = 0
+        self.direction = DOWN
         self.changed = 1
         self.update_screen()
 
@@ -77,13 +78,13 @@ class Snake():
             self.xs[i] = xs_old[i-1]
             self.ys[i] = ys_old[i-1]
 
-        if self.v == 0:
+        if self.direction == DOWN:
             self.ys[0] += 1
-        elif self.v == 1:
+        elif self.direction == RIGHT:
             self.xs[0] += 1
-        elif self.v == 2:
+        elif self.direction == UP:
             self.ys[0] -= 1
-        elif self.v == 3:
+        elif self.direction == LEFT:
             self.xs[0] -= 1
 
     def loop(self):
@@ -95,14 +96,14 @@ class Snake():
                     break
 
                 if self.changed == 0:
-                    if btn == 'Up' and self.v != 0:
-                        self.v = 2
-                    elif btn == 'Down' and self.v != 2:
-                        self.v = 0
-                    elif btn == 'Left' and self.v != 1:
-                        self.v = 3
-                    elif btn == 'Right' and self.v != 3:
-                        self.v = 1
+                    if btn == 'Up' and self.direction != DOWN:
+                        self.direction = UP
+                    elif btn == 'Down' and self.direction != UP:
+                        self.direction = DOWN
+                    elif btn == 'Left' and self.direction != 1:
+                        self.direction = LEFT
+                    elif btn == 'Right' and self.direction != LEFT:
+                        self.direction = RIGHT
                     self.changed = 1
 
             self.checkEatSnake()

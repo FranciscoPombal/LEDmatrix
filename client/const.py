@@ -13,7 +13,14 @@ RED = (0xff, 0, 0)
 GREEN = (0, 0xff, 0)
 BLUE = (0, 0, 0xff)
 
+# Tetris
 NO_ROTATE = 0
+
+# Snake
+UP = 2
+DOWN = 0
+LEFT = 3
+RIGHT = 1
 
 # Minimum time to sleep in between frames to avoid dropped frames.
 # Calculated by trial and error!
