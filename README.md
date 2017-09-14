@@ -33,5 +33,6 @@ For arduino:
 ### Running the simulator
 1.  - On Windows, get python 3 from [here]( https://www.python.org/downloads/) and **mark the option to add python 3 to PATH, on the installer**.
     - On GNU/Linux, run `sudo apt install python3 python3-pip`.
-3. Run `python3 simulator.py` from the "server" folder, connect your program to port 53777 and go!
 2. For either system, after installing python run `sudo -H pip3 install pygame pyserial`.
+3. Run `python3 simulator.py` from the "server" folder.
+4. Do `python3 -m client`. You can also connect your program to port 53777 on the server.
