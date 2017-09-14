@@ -5,16 +5,14 @@ Useful for quick devlopment and testing of new apps without physical
 access to the actual LED matrix.
 """
 
-import sys, os
+import sys
+import os
 import pygame
 import socket
 import threading
 from multiprocessing import Queue
 from const import *
 
-SCALE = 32  # Scaling factor so it doesn't actually take only 20x10 pixels on the screen
-FPS = 30
-VERTICAL = True  # False rotates left to horizontal. VISUAL ONLY, COORDINATES DON'T CHANGE!
 
 def network_thread(queue):
     s = socket.socket()

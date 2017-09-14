@@ -42,7 +42,7 @@ class ImageDisplay:
         final_img.paste(img, (0, 0))
 
         for line in range(len(list(final_img.getdata())) // WIDTH):
-            self.table[line] = list(final_img.getdata())[line * WIDTH : line * WIDTH + WIDTH]
+            self.table[line] = list(final_img.getdata())[line * WIDTH: line * WIDTH + WIDTH]
 
     def print_image(self, input_file, background_color=(0, 0, 0), rotate=None, loop=False):
         frame = Image.open(input_file)

@@ -6,6 +6,7 @@ import time
 import socket
 from const import *
 
+
 # TODO
 def find_matrix():
     for portinfo in comports():
@@ -22,14 +23,16 @@ def find_matrix():
 
     print('Error: matrix not found.', file=sys.stderr)
 
+
 def xy_convert_vertical(x, y):
     if y % 2 != 0:
         return (y*10 + x)
     else:
         return (y*10 + 9 - x)
 
+
 def main():
-    #matrix = find_matrix()
+    # matrix = find_matrix()
     matrix = serial.Serial(PATH, BAUD)
     time.sleep(5)
 
@@ -64,6 +67,7 @@ def main():
                 last = time.perf_counter()
 
     matrix.close()
+
 
 if __name__ == '__main__':
     main()

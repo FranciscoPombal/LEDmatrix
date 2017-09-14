@@ -7,6 +7,7 @@ from const import *
 BLACK = (0, 0, 0)
 RED = (0xff, 0, 0)
 
+
 def main():
     if len(sys.argv) > 1 and sys.argv[1] == 'socket':
         setattr(socket.socket, 'write', socket.socket.sendall)

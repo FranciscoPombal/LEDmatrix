@@ -6,6 +6,7 @@ from client.const import *
 Rainbows!
 """
 
+
 class Rainbow:
     def __init__(self, matrix, input_queue):
         self.matrix = matrix
@@ -22,15 +23,14 @@ class Rainbow:
         time.sleep(MIN_PERIOD)
         return True
 
-
     def loop(self):
         # `p` is the variable color channel, all the other are fixed,
         # in order to make a 'rainbow' effect. The order of the
         # fixed and variable color channels are easily verified
         # in a color wheel. In RGB order.
-        rainbow = [['255 : 0    : {p}' , '{p}  : 0    : 255' ]
-                  ,['0   : {p}  : 255' , '0    : 255  : {p}' ]
-                  ,['{p} : 255  : 0'   , '255  : {p}  : 0'   ]]
+        rainbow = [['255 : 0    : {p}', '{p}  : 0    : 255'],
+                   ['0   : {p}  : 255', '0    : 255  : {p}'],
+                   ['{p} : 255  : 0', '255  : {p}  : 0']]
 
         while True:
             for seg in rainbow:

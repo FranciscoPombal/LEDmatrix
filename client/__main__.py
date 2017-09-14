@@ -24,13 +24,14 @@ from client.const import *
 DEFAULT_INPUT = 'hesv1'
 DEFAULT_APP = 'menu'
 
+
 def main(app, input_module):
     # e.g. if input_module == 'controller', we exec:
     # 'from client.apps.controller import Controller as Input'
     # and then instantiate the class Controller (in another thread),
     # with one argument (input_queue)
     exec('from client.input.{0} import {1} as Input'.format(input_module,
-            input_module.capitalize()), globals())
+         input_module.capitalize()), globals())
     try:
         input_queue = Queue()
         input_thread = Thread(target=Input, args=(input_queue,))
@@ -48,7 +49,7 @@ def main(app, input_module):
     # and then instantiate the class Test,
     # with two arguments (matrix, input_queue)
     exec('from client.apps.{0} import {1} as App'.format(app,
-            app.capitalize()), globals())
+         app.capitalize()), globals())
     App(matrix, input_queue)
 
 

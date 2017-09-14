@@ -1,4 +1,4 @@
-BAUD = 115200 # Match arduino's baud rate
+BAUD = 115200  # Match arduino's baud rate
 
 WIDTH = 10
 HEIGHT = 20
@@ -12,6 +12,8 @@ WHITE = (0xff, 0xff, 0xff)
 RED = (0xff, 0, 0)
 GREEN = (0, 0xff, 0)
 BLUE = (0, 0, 0xff)
+
+NO_ROTATE = 0
 
 # Minimum time to sleep in between frames to avoid dropped frames.
 # Calculated by trial and error!

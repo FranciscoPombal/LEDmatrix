@@ -7,6 +7,7 @@ from queue import Queue
 Bem Vindo
 """
 
+
 class Bemvindo:
     def __init__(self, matrix, input_queue):
         self.matrix = matrix
@@ -14,4 +15,4 @@ class Bemvindo:
         self.loop()
 
     def loop(self):
-        ImageDisplay(self.matrix, Queue()).print_image("gifs/ist.gif", (0,0,0), 0, True)
+        ImageDisplay(self.matrix, Queue()).print_image("gifs/ist.gif", BLACK, NO_ROTATE, True)

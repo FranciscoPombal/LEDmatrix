@@ -8,6 +8,7 @@ PATH = '/dev/ttyUSB1'
 CHALL = b"Hi. Who are you?"
 RESP = b"Hi. I'm HES."
 
+
 class Hesv1:
     def __init__(self, input_queue):
         self.input_queue = input_queue

@@ -6,6 +6,7 @@ import threading
 from queue import Queue
 from client.const import *
 
+
 class Snake():
     def __init__(self, matrix, input_queue):
         self.matrix = matrix
@@ -21,9 +22,9 @@ class Snake():
         self.ys = [6, 5, 4, 3]
         self.length = 4
         self.f = []
-        self.f.extend(range(0,2))
-        self.f[0] = random.randint(0, 9)
-        self.f[1] = random.randint(0, 19)
+        self.f.extend(range(0, 2))
+        self.f[0] = random.randint(0, WIDTH - 1)
+        self.f[1] = random.randint(0, HEIGHT - 1)
         self.v = 0
         self.changed = 1
         self.update_screen()
@@ -44,13 +45,13 @@ class Snake():
         self.matrix.sendall(screen)
 
     def checkCollisionObject(self, x1, y1, x2, y2):
-        if x1==x2 and y1==y2:
+        if x1 == x2 and y1 == y2:
             return True
         else:
             return False
 
     def checkCollisionWalls(self):
-        if self.xs[0]>=0 and self.xs[0]<10 and self.ys[0]>=0 and self.ys[0]<20:
+        if self.xs[0] >= 0 and self.xs[0] < WIDTH and self.ys[0] >= 0 and self.ys[0] < HEIGHT:
             return False
         else:
             return True
@@ -65,8 +66,8 @@ class Snake():
         if self.checkCollisionObject(self.xs[0], self.ys[0], self.f[0], self.f[1]):
             self.xs.append(self.f[0])
             self.ys.append(self.f[1])
-            self.f[0] = random.randint(0, 9)
-            self.f[1] = random.randint(0, 19)
+            self.f[0] = random.randint(0, WIDTH - 1)
+            self.f[1] = random.randint(0, HEIGHT - 1)
             self.length += 1
 
     def moveSnake(self):
