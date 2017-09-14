@@ -17,7 +17,7 @@ class Hesv1:
             try:
                 self.hesv1 = self.find_hesv1()
                 break
-            except:
+            except RuntimeError:
                 pass
             finally:
                 time.sleep(0.1)
