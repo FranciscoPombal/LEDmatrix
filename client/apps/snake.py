@@ -17,33 +17,40 @@ class Snake():
         self.loop()
 
     def reset(self):
+        self.table = [[BLACK] * WIDTH for i in range(HEIGHT)]
+        self.score = 0
         # initial snake position
         self.xs = [5, 5, 5, 5]
         self.ys = [6, 5, 4, 3]
         self.length = 4
         # initial apple position
-        self.f = []
-        self.f.extend(range(0, 2))
-        self.f[0] = random.randint(0, WIDTH - 1)
-        self.f[1] = random.randint(0, HEIGHT - 1)
+        self.food = []
+        self.food.extend(range(0, 2))
+        self.food[0] = random.randint(0, WIDTH - 1)
+        self.food[1] = random.randint(0, HEIGHT - 1)
         self.direction = DOWN
         self.changed = 1
-        self.update_screen()
+        self.update_game()
 
     def update_screen(self):
-        s = [[BLACK]*WIDTH for x in range(HEIGHT)]
-
-        s[self.f[1]][self.f[0]] = self.food_color
-
-        for i in range(self.length):
-            s[self.ys[i]][self.xs[i]] = self.snake_color
-
         screen = b''
         for i in range(HEIGHT):
             for j in range(WIDTH):
-                screen += bytes(s[i][j])
+                screen += bytes(self.table[i][j])
 
         self.matrix.sendall(screen)
+
+    def update_game(self):
+        self.table = [[BLACK]*WIDTH for x in range(HEIGHT)]
+
+        # paint food squares
+        self.table[self.food[1]][self.food[0]] = self.food_color
+
+        # paint snake squares
+        for i in range(self.length):
+            self.table[self.ys[i]][self.xs[i]] = self.snake_color
+
+        self.update_screen()
 
     def checkCollisionObject(self, x1, y1, x2, y2):
         if x1 == x2 and y1 == y2:
@@ -112,5 +119,5 @@ class Snake():
             if self.checkCollisionWalls() or self.checkSelfCollision():
                 break
 
-            self.update_screen()
+            self.update_game()
             time.sleep(1/(3 + self.length/4))

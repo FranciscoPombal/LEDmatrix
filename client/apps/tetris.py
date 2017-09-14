@@ -78,7 +78,7 @@ PIECE_TYPES = (T, L, J, I, S, Z, O)
 
 class Tetris:
     def __init__(self, matrix, input_queue):
-        self.s = matrix
+        self.matrix = matrix
         self.input_queue = input_queue
         self.wait_new = False
         self.reset()
@@ -156,7 +156,7 @@ class Tetris:
             for j in range(WIDTH):
                 screen += bytes(self.table[i][j])
 
-        self.s.sendall(screen)
+        self.matrix.sendall(screen)
 
     def left_key(self):
         if self.piece.pos[0] - 1 >= 0:
