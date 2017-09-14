@@ -81,10 +81,10 @@ class Tetris:
         self.s = matrix
         self.input_queue = input_queue
         self.wait_new = False
-        self.clear()
+        self.reset()
         self.loop()
 
-    def clear(self):
+    def reset(self):
         self.table = [[BLACK] * WIDTH for i in range(HEIGHT)]
         self.score = 0
         self.update_screen()
@@ -272,7 +272,7 @@ class Tetris:
                     break
             time.sleep(0.1)
         self.wait_new = False
-        self.clear()
+        self.reset()
 
         return quit
 
@@ -302,7 +302,7 @@ class Tetris:
                 elif btn == 'Start':
                     self.start_key()
                 elif btn == 'Select':
-                    self.clear()
+                    self.reset()
                     break
 
             else:
