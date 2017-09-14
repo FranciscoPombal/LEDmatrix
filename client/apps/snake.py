@@ -71,12 +71,26 @@ class Snake():
         return False
 
     def checkEatSnake(self):
-        if self.checkCollisionObject(self.xs[0], self.ys[0], self.f[0], self.f[1]):
-            self.xs.append(self.f[0])
-            self.ys.append(self.f[1])
-            self.f[0] = random.randint(0, WIDTH - 1)
-            self.f[1] = random.randint(0, HEIGHT - 1)
+        if self.checkCollisionObject(self.xs[0], self.ys[0], self.food[0], self.food[1]):
+            self.xs.append(self.food[0])
+            self.ys.append(self.food[1])
             self.length += 1
+
+            # TODO: optimize. possiblepos can be created only once, and it can shrink as game progresses
+            # TODO: still does not work for some reason
+            possiblepos = []
+            for i in range(HEIGHT):
+                for j in range(WIDTH):
+                    possiblepos.append((i, j))
+
+            for i in range(0, self.length):
+                possiblepos[self.ys[i] + (self.xs[i] * HEIGHT)] = (-1, -1)  # mark position as invalid
+
+            possiblepos = sorted(possiblepos)
+            possiblepos = possiblepos[self.length:]
+            random.shuffle(possiblepos)
+            newpos = possiblepos[random.randint(0, 200 - self.length - 1)]
+            (self.food[1], self.food[0]) = newpos
 
     def moveSnake(self):
         xs_old = list(self.xs)
